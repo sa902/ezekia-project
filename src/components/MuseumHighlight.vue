@@ -7,13 +7,17 @@
           {{ data.name }}
         </div>
         <div class="museum-highlight__icon">
-          <slot name="icon" />
+          <slot name="icon"/>
         </div>
       </div>
       <div class="museum-highlight__body">
-        {{data.description}}
+        <div style="height: 20px"></div>
+        <slot name="museum-highlight__body-prepend"/>
+        {{ data.description }}
+        <slot name="museum-highlight__body-append"/>
       </div>
       <div class="museum-highlight__footer">
+        {{ data.date }}
         <div class="museum-highlight__actions">
         </div>
       </div>
@@ -36,8 +40,7 @@ export default {
 
   },
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
     newsDate() {
@@ -65,7 +68,7 @@ export default {
 .museum-highlight {
   padding: 0.7em; // only for desktop
   margin: 1em; // only for desktop
-  height: 200px;
+  min-height: 250px;
   //flex-basis: calc(50% - 20px);
   border-radius: 26px;
   border: 2px solid #f2f8f9;
@@ -75,6 +78,10 @@ export default {
   top: 0px;
   background-color: #f7ffe2;
   transition: all 0.3s ease-out;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
     transition: all 0.3s ease-out;
@@ -101,9 +108,12 @@ export default {
   &__title {
   }
 
-  &__star-image {
-    max-width: 48px;
-    max-height: 48px;
+  &__body {
+    flex: 1 0 auto;
+  }
+
+  &__footer {
+    align-self: flex-end;
   }
 
 

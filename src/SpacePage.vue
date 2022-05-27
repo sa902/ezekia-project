@@ -6,10 +6,19 @@
     </h1>
 
     <div class="space-page__body">
-      <museum-highlight v-for="(item,i) in spaceHighlights" :data="item" :key="i">
+      <museum-highlight v-for="(item,i) in orderedSpaceHighlights" :data="item" :key="i">
         <template slot="icon">
-          <img :src="star" class="museum-highlight__star-image" alt="">
+          <img :src="star" class="space-page__icon" alt="">
         </template>
+
+        <template #museum-highlight__body-prepend v-if="item.news">
+          <space-page-news-box :news="item.news" />
+        </template>
+
+        <template #museum-highlight__body-append v-if="item.quiz">
+          <br> view the quiz here {{ item.quiz }}
+        </template>
+
       </museum-highlight>
 
 
@@ -24,11 +33,10 @@
 
       <museum-highlight :data="oceansMock">
         <template slot="icon">
-            <font-awesome-icon class="" icon="fa-solid fa-water"/>
-            <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-fish-fins "/>
+          <font-awesome-icon class="" icon="fa-solid fa-water"/>
+          <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-fish-fins "/>
         </template>
       </museum-highlight>
-
 
 
     </div>
@@ -39,31 +47,34 @@
 </template>
 
 <script>
-
 import MuseumHighlight from './components/MuseumHighlight';
 import star from "./assets/star.png";
+import {orderBy} from 'lodash';
+import SpacePageNewsBox from "./components/SpacePageNewsBox";
+
 
 export default {
   name: 'SpacePage',
   components: {
     MuseumHighlight,
+    SpacePageNewsBox,
   },
   mixins: [],
   props: {},
   data() {
     return {
       star: star,
-      dinoMock:{
+      dinoMock: {
         date: '2020-04-20 12:20:00',
         description: 'The T-rex is a very common type of dinosaur',
-        id: 1,
+        id: 9999,
         image: '',
         name: 'T-Rex',
       },
-      oceansMock:{
+      oceansMock: {
         date: '2020-04-20 12:20:00',
         description: 'The Pacific ocean is located specifically between europe and the USA',
-        id: 1,
+        id: 9998,
         image: '',
         name: 'Pacific',
       },
@@ -115,10 +126,15 @@ export default {
       },
     };
   },
-  computed: {},
+  computed: {
+    orderedSpaceHighlights() {
+      return orderBy(this.spaceHighlights, ['date'], ['desc'])
+    }
+  },
   methods: {},
   created() {
-
+    console.log('this is space highlights ', this.spaceHighlights)
+    console.log('this is after order by ', orderBy(this.spaceHighlights, ['date'], ['desc']))
   },
 };
 </script>
@@ -145,6 +161,11 @@ export default {
     //
     //}
 
+  }
+
+  .space-page__icon {
+    max-height: 48px;
+    max-width: 48px;
   }
 }
 </style>
