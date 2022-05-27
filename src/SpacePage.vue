@@ -6,7 +6,31 @@
     </h1>
 
     <div class="space-page__body">
-      <museum-highlight></museum-highlight>
+      <museum-highlight v-for="(item,i) in spaceHighlights" :data="item" :key="i">
+        <template slot="icon">
+          <img :src="star" class="museum-highlight__star-image" alt="">
+        </template>
+      </museum-highlight>
+
+
+      <museum-highlight :data="dinoMock">
+        <template slot="icon">
+          <font-awesome-layers class="fa-3x">
+            <font-awesome-icon class="" icon="fa-regular fa-circle"/>
+            <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-horse-head "/>
+          </font-awesome-layers>
+        </template>
+      </museum-highlight>
+
+      <museum-highlight :data="oceansMock">
+        <template slot="icon">
+            <font-awesome-icon class="" icon="fa-solid fa-water"/>
+            <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-fish-fins "/>
+        </template>
+      </museum-highlight>
+
+
+
     </div>
 
     <!-- Add the museum highlight cards based on the data provided below -->
@@ -17,6 +41,7 @@
 <script>
 
 import MuseumHighlight from './components/MuseumHighlight';
+import star from "./assets/star.png";
 
 export default {
   name: 'SpacePage',
@@ -27,6 +52,21 @@ export default {
   props: {},
   data() {
     return {
+      star: star,
+      dinoMock:{
+        date: '2020-04-20 12:20:00',
+        description: 'The T-rex is a very common type of dinosaur',
+        id: 1,
+        image: '',
+        name: 'T-Rex',
+      },
+      oceansMock:{
+        date: '2020-04-20 12:20:00',
+        description: 'The Pacific ocean is located specifically between europe and the USA',
+        id: 1,
+        image: '',
+        name: 'Pacific',
+      },
       spaceHighlights: [
         {
           date: '2020-04-20 12:20:00',
@@ -91,7 +131,8 @@ export default {
     font-size: 24px;
     font-weight: 600;
   }
-  &__body{
+
+  &__body {
     //margin: 50px; // for large only
     display: flex;
     justify-content: center;

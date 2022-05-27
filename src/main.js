@@ -5,7 +5,7 @@ import App from './App.vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 /* import specific icons */
-import { faHorseHead } from '@fortawesome/free-solid-svg-icons'
+import { faHorseHead,faWater,faFishFins } from '@fortawesome/free-solid-svg-icons'
 import {faCircle} from "@fortawesome/free-regular-svg-icons";
 
 /* import font awesome icon component */
@@ -14,6 +14,7 @@ import { FontAwesomeIcon,FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
 /* add icons to the library */
 library.add(faHorseHead)
 library.add(faCircle)
+library.add(faWater,faFishFins)
 
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)

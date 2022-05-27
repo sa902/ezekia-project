@@ -4,14 +4,17 @@
     <div class="museum-highlight" @mouseenter="mouseEnter" @mouseleave="mouseLeave" @click="mouseClick">
       <div class="museum-highlight__header">
         <div class="museum-highlight__title">
-          title
+          {{ data.name }}
         </div>
         <div class="museum-highlight__icon">
-          <font-awesome-layers class="fa-3x">
-            <font-awesome-icon class="" icon="fa-regular fa-circle"/>
-            <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-horse-head "/>
-          </font-awesome-layers>
-          <img :src="star" class="museum-highlight__star-image" alt="">
+          <slot name="icon" />
+        </div>
+      </div>
+      <div class="museum-highlight__body">
+        {{data.description}}
+      </div>
+      <div class="museum-highlight__footer">
+        <div class="museum-highlight__actions">
         </div>
       </div>
     </div>
@@ -19,16 +22,21 @@
 </template>
 
 <script>
-import star from '../assets/star.png'
+
 
 export default {
   name: 'MuseumHighlight',
   components: {},
   mixins: [],
-  props: {},
+  props: {
+    data: {
+      type: Object,
+      required: false,
+    }
+
+  },
   data() {
     return {
-      star: star
     };
   },
   computed: {
@@ -67,6 +75,7 @@ export default {
   top: 0px;
   background-color: #f7ffe2;
   transition: all 0.3s ease-out;
+
   &:hover {
     transition: all 0.3s ease-out;
     box-shadow: 0px 8px 16px rgba(38, 38, 38, 0.2);
@@ -99,7 +108,6 @@ export default {
 
 
 }
-
 
 
 </style>
