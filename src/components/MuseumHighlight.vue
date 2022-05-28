@@ -1,13 +1,13 @@
 <template>
   <div>
 
-    <div class="museum-highlight" @mouseenter="mouseEnter" @mouseleave="mouseLeave" @click="mouseClick">
+    <div class="museum-highlight" @mouseenter="mouseEnter" @mouseleave="mouseLeave" @click="mouseClick" :style="cssVars">
       <div class="museum-highlight__header">
-        <div class="museum-highlight__title">
+        <h2 class="museum-highlight__title">
           {{ data.name }}
-        </div>
+        </h2>
         <div class="museum-highlight__icon">
-          <slot name="icon"/>
+          <slot name="museum-highlight__icon"/>
         </div>
       </div>
       <div class="museum-highlight__body">
@@ -36,6 +36,11 @@ export default {
     data: {
       type: Object,
       required: false,
+    },
+    backgroundColor:{
+      type:String,
+      required:false,
+      default:'#f7ffe2'
     }
 
   },
@@ -45,6 +50,12 @@ export default {
   computed: {
     newsDate() {
       // Highlight's news item date
+    },
+    cssVars(){
+      return{
+
+      '--bg-color' : this.$props.backgroundColor,
+      }
     },
   },
   methods: {
@@ -76,7 +87,7 @@ export default {
   position: relative;
   right: 0px;
   top: 0px;
-  background-color: #f7ffe2;
+  background-color: var(--bg-color);
   transition: all 0.3s ease-out;
   display: flex;
   flex-grow: 1;
@@ -99,7 +110,7 @@ export default {
   &__header {
     display: flex;
     height: 52px;
-    background-color: #42b983;
+    //background-color: #42b983;
     justify-content: space-between;
     //align-content: center;
     align-items: center;

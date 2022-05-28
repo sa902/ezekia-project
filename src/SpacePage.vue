@@ -6,13 +6,17 @@
     </h1>
 
     <div class="space-page__body">
-      <museum-highlight v-for="(item,i) in orderedSpaceHighlights" :data="item" :key="i">
-        <template slot="icon">
-          <img :src="star" class="space-page__icon" alt="">
+      <museum-highlight
+          v-for="(item,i) in orderedSpaceHighlights"
+          :background-color="item.external ? externalCardColor : cardColor"
+          :data="item"
+          :key="i">
+        <template #museum-highlight__icon>
+          <img :src="star" class="space-page__icon" alt=""/>
         </template>
 
         <template #museum-highlight__body-prepend v-if="item.news">
-          <space-page-news-box :news="item.news" />
+          <space-page-news-box :news="item.news"/>
         </template>
 
         <template #museum-highlight__body-append v-if="item.quiz">
@@ -22,8 +26,8 @@
       </museum-highlight>
 
 
-      <museum-highlight :data="dinoMock">
-        <template slot="icon">
+      <museum-highlight background-color="#ff0808" :data="dinoMock">
+        <template #museum-highlight__icon>
           <font-awesome-layers class="fa-3x">
             <font-awesome-icon class="" icon="fa-regular fa-circle"/>
             <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-horse-head "/>
@@ -32,12 +36,12 @@
       </museum-highlight>
 
       <museum-highlight :data="oceansMock">
-        <template slot="icon">
+        <template #museum-highlight__icon>
           <font-awesome-icon class="" icon="fa-solid fa-water"/>
           <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-fish-fins "/>
         </template>
       </museum-highlight>
-
+      <museum-highlight :data="oceansMock"></museum-highlight>
 
     </div>
 
@@ -51,6 +55,7 @@ import MuseumHighlight from './components/MuseumHighlight';
 import star from "./assets/star.png";
 import {orderBy} from 'lodash';
 import SpacePageNewsBox from "./components/SpacePageNewsBox";
+import variables from './assets/space.scss'
 
 
 export default {
@@ -64,6 +69,9 @@ export default {
   data() {
     return {
       star: star,
+      cardColor: variables.primaryColor,
+      externalCardColor: variables.externalPrimaryColor,
+      combinedSpaceData: [],
       dinoMock: {
         date: '2020-04-20 12:20:00',
         description: 'The T-rex is a very common type of dinosaur',
@@ -128,13 +136,30 @@ export default {
   },
   computed: {
     orderedSpaceHighlights() {
-      return orderBy(this.spaceHighlights, ['date'], ['desc'])
-    }
+      return orderBy(this.combinedSpaceData, ['date'], ['desc'])
+    },
+
   },
   methods: {},
   created() {
-    console.log('this is space highlights ', this.spaceHighlights)
-    console.log('this is after order by ', orderBy(this.spaceHighlights, ['date'], ['desc']))
+    let emptyArray = []
+    for (const key of Object.keys(this.spacePartners)) {
+      console.log('this is looping through the thing ', key, this.spacePartners[key]);
+      let testObj = {
+        date: this.spacePartners[key].createdAt,
+        description: this.spacePartners[key].info,
+        name: this.spacePartners[key].name,
+        image: this.spacePartners[key].image,
+        external: true,
+      }
+      emptyArray = [...emptyArray, testObj]
+    }
+    console.log('this is empty array ', typeof emptyArray)
+    this.combinedSpaceData = [...this.spaceHighlights, ...emptyArray]
+
+
+    // console.log('this is space highlights ', this.spaceHighlights)
+    // console.log('this is after order by ', orderBy(this.spaceHighlights, ['date'], ['desc']))
   },
 };
 </script>
