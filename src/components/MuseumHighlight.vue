@@ -30,7 +30,7 @@
 </template>
 
 <script>
-
+import variables from '../assets/_variables.scss'
 
 export default {
   name: 'MuseumHighlight',
@@ -44,7 +44,7 @@ export default {
     backgroundColor: {
       type: String,
       required: false,
-      default: '#f7ffe2'
+      default: variables.defaultMuseumHighlightColor
     },
     fallbackImage:{
       type:String,
@@ -75,13 +75,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use '../assets/_variables.scss';
 .museum-highlight {
   padding: 0.7em; // only for desktop
   margin: 1em; // only for desktop
   min-height: 250px;
   //flex-basis: calc(50% - 20px);
   border-radius: 26px;
-  border: 2px solid #f2f8f9;
+  border: 2px solid variables.$museum-highlight-border-color;
   display: block;
   position: relative;
   right: 0px;
@@ -95,11 +96,11 @@ export default {
 
   &:hover {
     transition: all 0.3s ease-out;
-    box-shadow: 0px 8px 16px rgba(38, 38, 38, 0.2);
+    box-shadow: 0px 8px 16px variables.$museum-highlight__hover-box-shadow;
     right: 10px;
     top: -10px;
-    border: 1px solid #ff0808;
-    background-color: white;
+    border: 1px solid variables.$museum-highlight__hover-border;
+    background-color: variables.$museum-highlight__hover-background-color;
   }
 
   &:hover:before {
@@ -109,9 +110,7 @@ export default {
   &__header {
     display: flex;
     height: 52px;
-    //background-color: #42b983;
     justify-content: space-between;
-    //align-content: center;
     align-items: center;
   }
 

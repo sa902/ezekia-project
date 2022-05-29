@@ -6,3 +6,13 @@ $grid-breakpoints: (
         xl: 1200px,
         xxl: 1400px
 );
+
+$default-museum-highlight-color:#F7FFE2FF;
+$museum-highlight-border-color:#f2f8f9;
+$museum-highlight__hover-box-shadow: #26262633;
+$museum-highlight__hover-border: #ff0808;
+$museum-highlight__hover-background-color: white;
+
+:export{
+  defaultMuseumHighlightColor: $default-museum-highlight-color;
+}
