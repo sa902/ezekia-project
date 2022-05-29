@@ -10,6 +10,7 @@
           v-for="(item,i) in orderedSpaceHighlights"
           :background-color="item.external ? externalCardColor : cardColor"
           :data="item"
+          :fallback-image=fallbackImage
           :key="i">
         <template #museum-highlight__icon>
           <img :src="star" class="space-page__icon" alt=""/>
@@ -69,6 +70,7 @@ export default {
       star: star,
       cardColor: variables.primaryColor,
       externalCardColor: variables.externalPrimaryColor,
+      fallbackImage:"http://picsum.photos/id/1042/300/300",
       combinedSpaceData: [],
       dinoMock: {
         date: '2020-04-20 12:20:00',

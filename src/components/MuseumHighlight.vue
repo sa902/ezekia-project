@@ -10,6 +10,10 @@
         </div>
       </div>
       <div class="museum-highlight__body">
+        <div class="museum-highlight__image">
+          <img v-show="!data.image" :src="fallbackImage" alt="">
+          <img v-show="data.image" :src="data.image" alt="">
+        </div>
         <div style="height: 20px"></div>
         <slot name="museum-highlight__body-prepend"/>
         {{ data.description }}
@@ -41,6 +45,10 @@ export default {
       type: String,
       required: false,
       default: '#f7ffe2'
+    },
+    fallbackImage:{
+      type:String,
+      required:true,
     }
 
   },
