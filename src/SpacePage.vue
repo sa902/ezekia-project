@@ -28,22 +28,21 @@
       </museum-highlight>
 
 
-      <museum-highlight background-color="#ff0808" :data="dinoMock">
-        <template #museum-highlight__icon>
-          <font-awesome-layers class="fa-3x">
-            <font-awesome-icon class="" icon="fa-regular fa-circle"/>
-            <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-horse-head "/>
-          </font-awesome-layers>
-        </template>
-      </museum-highlight>
-
-      <museum-highlight :data="oceansMock">
-        <template #museum-highlight__icon>
-          <font-awesome-icon class="" icon="fa-solid fa-water"/>
-          <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-fish-fins "/>
-        </template>
-      </museum-highlight>
-      <museum-highlight :data="oceansMock"></museum-highlight>
+<!--      <museum-highlight background-color="#ff0808" :data="dinoMock">-->
+<!--        <template #museum-highlight__icon>-->
+<!--          <font-awesome-layers class="fa-3x">-->
+<!--            <font-awesome-icon class="" icon="fa-regular fa-circle"/>-->
+<!--            <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-horse-head "/>-->
+<!--          </font-awesome-layers>-->
+<!--        </template>-->
+<!--      </museum-highlight>-->
+<!--      <museum-highlight :data="oceansMock">-->
+<!--        <template #museum-highlight__icon>-->
+<!--          <font-awesome-icon class="" icon="fa-solid fa-water"/>-->
+<!--          <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-fish-fins "/>-->
+<!--        </template>-->
+<!--      </museum-highlight>-->
+<!--      <museum-highlight :data="oceansMock"></museum-highlight>-->
 
     </div>
   </div>
@@ -158,6 +157,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'assets/_variables.scss';
 
 .space-page {
   &__title {
@@ -167,7 +167,6 @@ export default {
   }
 
   &__body {
-    //margin: 50px; // for large only
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -175,9 +174,14 @@ export default {
     column-gap: 1em;
     row-gap: 1em;
 
-    //@media  {
-    //
-    //}
+    @media only screen and (min-width:  map-get( variables.$grid-breakpoints, 'md') ) {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: row;
+      flex-wrap: wrap;
+      column-gap: 1em;
+      row-gap: 1em;
+    }
 
   }
 

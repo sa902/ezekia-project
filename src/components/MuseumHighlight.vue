@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <div class="museum-highlight" :style="cssVars">
+  <div class="museum-highlight" :style="cssVars">
+    <div class="museum-highlight__wrapper">
+
+
       <div class="museum-highlight__header">
         <h2 class="museum-highlight__title">
           {{ data.name }}
@@ -14,7 +16,6 @@
           <img v-show="!data.image" :src="fallbackImage" alt="">
           <img v-show="data.image" :src="data.image" alt="">
         </div>
-        <div style="height: 20px"></div>
         <slot name="museum-highlight__body-prepend"/>
         {{ data.description }}
         <slot name="museum-highlight__body-append"/>
@@ -46,9 +47,9 @@ export default {
       required: false,
       default: variables.defaultMuseumHighlightColor
     },
-    fallbackImage:{
-      type:String,
-      required:true,
+    fallbackImage: {
+      type: String,
+      required: true,
     }
 
   },
@@ -65,9 +66,7 @@ export default {
       }
     },
   },
-  methods: {
-
-  },
+  methods: {},
   created() {
 
   },
@@ -76,11 +75,11 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/_variables.scss';
+
 .museum-highlight {
-  padding: 0.7em; // only for desktop
-  margin: 1em; // only for desktop
-  min-height: 250px;
-  //flex-basis: calc(50% - 20px);
+  padding: 0.7em;
+  margin: 1em;
+
   border-radius: 26px;
   border: 2px solid variables.$museum-highlight-border-color;
   display: block;
@@ -97,7 +96,7 @@ export default {
   &:hover {
     transition: all 0.3s ease-out;
     box-shadow: 0px 8px 16px variables.$museum-highlight__hover-box-shadow;
-    right: 10px;
+    right: -10px;
     top: -10px;
     border: 1px solid variables.$museum-highlight__hover-border;
     background-color: variables.$museum-highlight__hover-background-color;
@@ -105,6 +104,9 @@ export default {
 
   &:hover:before {
     transform: scale(2.15);
+  }
+  &__wrapper{
+    padding: 0.7em;
   }
 
   &__header {
@@ -123,6 +125,14 @@ export default {
 
   &__footer {
     align-self: flex-end;
+  }
+
+  @media only screen and (min-width: map-get(variables.$grid-breakpoints, 'md')) {
+    flex-basis: calc(50% - 20px);
+    width: calc(50% - 20px);
+    padding: 0; // only for desktop
+    margin: 0; // only for desktop
+    max-width: 50%;
   }
 
 
