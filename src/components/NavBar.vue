@@ -21,32 +21,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* Base */
-.main-nav{
-  margin:0;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+@use '../assets/_variables.scss';
+
+.main-nav {
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: variables.$main-nav__list-color;
+  }
+
+  &__item {
+    float: left;
+  }
+
+  &__link {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  &__link:hover {
+    background-color: variables.$main-nav__link-hover-color;
+  }
 }
 
-li {
-  float: left;
-}
 
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-  background-color: #111;
-}
 </style>

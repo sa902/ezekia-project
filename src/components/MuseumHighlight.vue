@@ -67,9 +67,7 @@ export default {
     },
   },
   methods: {},
-  created() {
-
-  },
+  created() {},
 };
 </script>
 
@@ -79,7 +77,6 @@ export default {
 .museum-highlight {
   padding: 0.7em;
   margin: 1em;
-
   border-radius: 26px;
   border: 2px solid variables.$museum-highlight-border-color;
   display: block;
