@@ -158,10 +158,12 @@ export default {
 
 <style lang="scss" scoped>
 @use 'assets/_variables.scss';
+@use 'assets/space';
 
 .space-page {
+  margin:8px;
   &__title {
-    color: #2c3791;
+    color: space.$title-color;
     font-size: 24px;
     font-weight: 600;
   }
@@ -182,7 +184,6 @@ export default {
       column-gap: 1em;
       row-gap: 1em;
     }
-
   }
 
   .space-page__icon {
