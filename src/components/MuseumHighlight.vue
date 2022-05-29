@@ -1,7 +1,6 @@
 <template>
   <div>
-
-    <div class="museum-highlight" @mouseenter="mouseEnter" @mouseleave="mouseLeave" @click="mouseClick" :style="cssVars">
+    <div class="museum-highlight" :style="cssVars">
       <div class="museum-highlight__header">
         <h2 class="museum-highlight__title">
           {{ data.name }}
@@ -19,6 +18,7 @@
       <div class="museum-highlight__footer">
         {{ data.date }}
         <div class="museum-highlight__actions">
+          <slot name="museum-highlight__actions"/>
         </div>
       </div>
     </div>
@@ -37,10 +37,10 @@ export default {
       type: Object,
       required: false,
     },
-    backgroundColor:{
-      type:String,
-      required:false,
-      default:'#f7ffe2'
+    backgroundColor: {
+      type: String,
+      required: false,
+      default: '#f7ffe2'
     }
 
   },
@@ -51,23 +51,14 @@ export default {
     newsDate() {
       // Highlight's news item date
     },
-    cssVars(){
-      return{
-
-      '--bg-color' : this.$props.backgroundColor,
+    cssVars() {
+      return {
+        '--bg-color': this.$props.backgroundColor,
       }
     },
   },
   methods: {
-    mouseEnter() {
-      console.log('mouse entered')
-    },
-    mouseLeave() {
-      console.log('mouse leave')
-    },
-    mouseClick() {
-      console.log('we clicked!')
-    }
+
   },
   created() {
 

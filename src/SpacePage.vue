@@ -20,7 +20,8 @@
         </template>
 
         <template #museum-highlight__body-append v-if="item.quiz">
-          <br> view the quiz here {{ item.quiz }}
+          <br>
+          <a :href="item.quiz">view the quiz here</a>
         </template>
 
       </museum-highlight>
@@ -44,9 +45,6 @@
       <museum-highlight :data="oceansMock"></museum-highlight>
 
     </div>
-
-    <!-- Add the museum highlight cards based on the data provided below -->
-
   </div>
 </template>
 
@@ -138,28 +136,21 @@ export default {
     orderedSpaceHighlights() {
       return orderBy(this.combinedSpaceData, ['date'], ['desc'])
     },
-
   },
   methods: {},
   created() {
-    let emptyArray = []
+    let tempArray = []
     for (const key of Object.keys(this.spacePartners)) {
-      console.log('this is looping through the thing ', key, this.spacePartners[key]);
-      let testObj = {
+      let tempObj = {
         date: this.spacePartners[key].createdAt,
         description: this.spacePartners[key].info,
         name: this.spacePartners[key].name,
         image: this.spacePartners[key].image,
         external: true,
       }
-      emptyArray = [...emptyArray, testObj]
+      tempArray = [...tempArray, tempObj]
     }
-    console.log('this is empty array ', typeof emptyArray)
-    this.combinedSpaceData = [...this.spaceHighlights, ...emptyArray]
-
-
-    // console.log('this is space highlights ', this.spaceHighlights)
-    // console.log('this is after order by ', orderBy(this.spaceHighlights, ['date'], ['desc']))
+    this.combinedSpaceData = [...this.spaceHighlights, ...tempArray]
   },
 };
 </script>
