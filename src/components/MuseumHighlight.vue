@@ -1,8 +1,6 @@
 <template>
   <div class="museum-highlight" :style="cssVars">
     <div class="museum-highlight__wrapper">
-
-
       <div class="museum-highlight__header">
         <h2 class="museum-highlight__title">
           {{ data.name }}
@@ -21,7 +19,7 @@
         <slot name="museum-highlight__body-append"/>
       </div>
       <div class="museum-highlight__footer">
-        {{ data.date }}
+        Published: {{newsDate}}
         <div class="museum-highlight__actions">
           <slot name="museum-highlight__actions"/>
         </div>
@@ -59,6 +57,9 @@ export default {
   computed: {
     newsDate() {
       // Highlight's news item date
+      let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      let newDate = new Date(this.data.date)
+      return newDate.toLocaleDateString("en-US", options)
     },
     cssVars() {
       return {
@@ -85,10 +86,6 @@ export default {
   top: 0px;
   background-color: var(--bg-color);
   transition: all 0.3s ease-out;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: space-between;
 
   &:hover {
     transition: all 0.3s ease-out;
@@ -104,6 +101,11 @@ export default {
   }
   &__wrapper{
     padding: 0.7em;
+    height: 100%;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__header {
@@ -122,6 +124,7 @@ export default {
 
   &__footer {
     align-self: flex-end;
+    padding: 1em;
   }
 
   @media only screen and (min-width: map-get(variables.$grid-breakpoints, 'md')) {

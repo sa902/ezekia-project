@@ -1,23 +1,19 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <space-page>
-
-    </space-page>
-
+    <space-page></space-page>
   </div>
 </template>
 
 <script>
 
-import SpacePage from "./SpacePage";
 import NavBar from "./components/NavBar";
-
+import SpacePage from "./SpacePage.vue"
 export default {
   name: 'App',
   components: {
-    SpacePage,
-    NavBar
+    NavBar,
+    SpacePage
   }
 }
 </script>
@@ -29,7 +25,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-body{
+
+body {
   margin: 0;
 
 }

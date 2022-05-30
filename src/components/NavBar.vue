@@ -1,14 +1,8 @@
 <template>
   <nav class="main-nav" aria-label="Navigation">
     <ul class="main-nav__list">
-      <li class="main-nav__item">
-        <a href="#" class="main-nav__link">Home</a>
-      </li>
-      <li class="main-nav__item">
-        <a href="#" class="main-nav__link">Work</a>
-      </li>
-      <li class="main-nav__item">
-        <a href="#" class="main-nav__link">About us</a>
+      <li class="main-nav__item" v-for="(item,i) in links" :key="i">
+        <a :href="item.to" class="main-nav__link">{{ item.name }}</a>
       </li>
     </ul>
   </nav>
@@ -16,7 +10,27 @@
 
 <script>
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  data: () => ({
+    links: [
+      {
+        to: '#',
+        name: 'Space'
+      },
+      {
+        to: '#',
+        name: 'Dinosaurs'
+      },
+      {
+        to: '#',
+        name: 'Wildlife'
+      },
+      {
+        to: '#',
+        name: 'Oceans'
+      }
+    ]
+  })
 }
 </script>
 

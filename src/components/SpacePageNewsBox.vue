@@ -10,7 +10,7 @@
       </div>
       <br>
       <div v-if="news.date">
-        {{ news.date }}
+        {{ newsDate }}
       </div>
     </div>
   </div>
@@ -23,6 +23,13 @@ export default {
     news: {
       type: Object,
       required: true,
+    }
+  },
+  computed:{
+    newsDate(){
+      let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      let newDate = new Date(this.news.date)
+      return newDate.toLocaleDateString("en-US", options)
     }
   }
 }

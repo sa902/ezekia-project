@@ -1,4 +1,4 @@
-# ez-project
+# ezekia-project
 
 ## Project setup
 ```

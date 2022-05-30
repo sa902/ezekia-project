@@ -28,7 +28,7 @@
       </museum-highlight>
 
 
-<!--      <museum-highlight background-color="#ff0808" :data="dinoMock">-->
+<!--      <museum-highlight   :fallback-image="fallbackImage" background-color="#ff0808" :data="dinoMock">-->
 <!--        <template #museum-highlight__icon>-->
 <!--          <font-awesome-layers class="fa-3x">-->
 <!--            <font-awesome-icon class="" icon="fa-regular fa-circle"/>-->
@@ -36,13 +36,12 @@
 <!--          </font-awesome-layers>-->
 <!--        </template>-->
 <!--      </museum-highlight>-->
-<!--      <museum-highlight :data="oceansMock">-->
+<!--      <museum-highlight :fallback-image="fallbackImage"  :data="oceansMock">-->
 <!--        <template #museum-highlight__icon>-->
 <!--          <font-awesome-icon class="" icon="fa-solid fa-water"/>-->
 <!--          <font-awesome-icon class="" style="" transform="shrink-7" icon="fa-solid fa-fish-fins "/>-->
 <!--        </template>-->
 <!--      </museum-highlight>-->
-<!--      <museum-highlight :data="oceansMock"></museum-highlight>-->
 
     </div>
   </div>
@@ -54,7 +53,6 @@ import star from "./assets/star.png";
 import {orderBy} from 'lodash';
 import SpacePageNewsBox from "./components/SpacePageNewsBox";
 import variables from './assets/space.scss'
-
 
 export default {
   name: 'SpacePage',
@@ -157,11 +155,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'assets/_variables.scss';
-@use 'assets/space';
+@use 'src/assets/variables';
+@use 'src/assets/space';
 
 .space-page {
-  margin:8px;
   &__title {
     color: space.$title-color;
     font-size: 24px;
